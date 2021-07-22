@@ -1,0 +1,36 @@
+
+{% set data = load_setup_py_data() %}
+
+
+package:
+    name    : psdaq_control_minimal
+
+    version : {{ data.get('version') }}
+
+
+source:
+    path: ..
+
+build:
+    number: 1
+    noarch: python
+
+requirements:
+    build:
+      - python >=3.6
+      - setuptools
+
+    run:
+      - python >=3.6
+
+test:
+    imports:
+      - psdaq_control_minimal
+
+    requires:
+      - pytest
+
+about:
+  home: https://github.com/pcdshub/psdaq-control-minimal
+  license: SLAC Open License
+  summary: A simple repackaging of the lcls2 daq code with minimal dependencies needed for daq control in hutch python.
