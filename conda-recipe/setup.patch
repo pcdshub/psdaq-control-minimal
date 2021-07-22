@@ -1,9 +1,15 @@
 diff --git a/psdaq/setup.py b/psdaq/setup.py
-index 28bd16a..bb3a6f6 100644
+index 8590945..de6a163 100644
 --- a/psdaq/setup.py
 +++ b/psdaq/setup.py
-@@ -1,56 +1,9 @@
+@@ -1,62 +1,10 @@
+ import os
 -from setuptools import setup, find_packages
+-
+-VERSION = '0.0.0'
+-version_env = os.environ.get('VERSION')
+-if version_env:
+-    VERSION = version_env
 +from setuptools import setup
  
  setup(
@@ -11,7 +17,7 @@ index 28bd16a..bb3a6f6 100644
 +       name = 'psdaq-control-minimal',
         license = 'LCLS II',
 -       description = 'LCLS II DAQ package',
--
+-       version = VERSION,
 -       packages = find_packages(),
 -       package_data={'psdaq.control_gui': ['data/icons/*.png','data/icons/*.gif'],},
 -
@@ -60,7 +66,7 @@ index 28bd16a..bb3a6f6 100644
 -                'seqprogram = psdaq.seq.seqprogram:main',
 -              ]
 -       },
-+       description = 'LCLS II DAQ control bits needed for hutch python',
-+       version = '3.3.14',
++       description = 'LCLS II DAQ control minimal interface',
++       version = os.environ['GIT_DESCRIBE_TAG'],
 +       packages = ['psdaq.control']
  )
