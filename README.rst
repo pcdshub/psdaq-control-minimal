@@ -9,30 +9,27 @@ psdaq-control-minimal
         :target: https://pypi.python.org/pypi/psdaq-control-minimal
 
 
-A simple repackaging of the lcls2 daq code with minimal dependencies needed for daq control in hutch python.
+A simple repackaging of the lcls2 daq code at https://github.com/slac-lcls/lcls2 with minimal dependencies needed for daq control in hutch python.
 
-Documentation
--------------
-
-Sphinx-generated documentation for this project can be found here:
-https://pcdshub.github.io/psdaq-control-minimal/
-
+This pares down the requirements, unlinks the script entrypoints, and exposes the module ``psdaq.control``.
 
 Requirements
 ------------
 
-Describe the project requirements (i.e. Python version, packages and how to install them)
+This works with any version of Python >= 3.6.
+
+It requires only ``zmq`` for communicating with the DAQ, and ``ophyd`` and ``bluesky`` for hutch python scanning.
 
 Installation
 ------------
 
-Describe the installation procedure
+``conda install psdaq-control-minimal -c pcds-tag``
 
-Running the Tests
------------------
-::
+Maintenance
+-----------
 
-  $ python run_tests.py
+- Create a new tag on this repo that matches a tag on https://github.com/slac-lcls/lcls2/releases to trigger a new build
+- If the setup.py patch gets out of sync, cd into the conda-recipe directory and run ``generate_patch.sh 3.3.18``, replacing the number with the tag to sync with.
 
 Directory Structure
 -------------------
