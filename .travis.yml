@@ -26,3 +26,15 @@ import:
   # Deploy Stage
   #- pcdshub/pcds-ci-helpers:travis/shared_configs/pypi-upload.yml
   - pcdshub/pcds-ci-helpers:travis/shared_configs/anaconda-upload.yml
+
+# Add a build stage for our special version setting
+jobs:
+  include:
+      - stage: build
+        name: "Anaconda Build"
+        before_script:
+          - echo "Setting the version"
+          - pushd conda-recipe
+          - ./finalize_version.sh
+          - popd
+
