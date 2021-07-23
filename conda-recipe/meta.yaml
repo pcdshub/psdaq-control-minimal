@@ -2,7 +2,7 @@
 
 package:
     name    : psdaq_control_minimal
-    version : {{ version }}
+    version : {{ version | replace('-', '.') }}
 
 source:
   git_url: https://github.com/slac-lcls/lcls2.git
