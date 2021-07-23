@@ -7,22 +7,13 @@ env:
     # The folder containing the conda recipe (meta.yaml)
     - CONDA_RECIPE_FOLDER="conda-recipe"
 
-# If not using the standard-python-conda above please uncomment the required
-# (language, os, dist and stages) and optional (import statements) entries from
-# the blocks below.
-#
 language: python
 os: linux
 dist: xenial
 
 stages:
   - build
-  - name: deploy
-    if: (branch = master OR tag IS present) AND type != pull_request
-
-import:
-  # Deploy Stage
-  - pcdshub/pcds-ci-helpers:travis/shared_configs/anaconda-upload.yml
+  - deploy
 
 # Edit build stage for our special version setting
 jobs:
@@ -60,3 +51,6 @@ jobs:
           - cat ${CONDA_RECIPE_FOLDER}/meta.yaml
           - conda build -q $CONDA_RECIPE_FOLDER --output-folder bld-dir --no-anaconda-upload
 
+import:
+  # Deploy Stage
+  - pcdshub/pcds-ci-helpers:travis/shared_configs/anaconda-upload.yml
