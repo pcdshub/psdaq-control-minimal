@@ -13,7 +13,8 @@ dist: xenial
 
 stages:
   - build
-  - deploy
+  - name: deploy
+    if: (branch = master OR tag IS present) AND type != pull_request
 
 # Edit build stage for our special version setting
 jobs:
