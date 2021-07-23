@@ -28,8 +28,9 @@ Installation
 Maintenance
 -----------
 
-- Create a new tag on this repo that matches a tag on https://github.com/slac-lcls/lcls2/releases to trigger a new build
-- If the setup.py patch gets out of sync, cd into the conda-recipe directory and run ``generate_patch.sh 3.3.18``, replacing the number with the tag to sync with.
+- Create a new tag on this repo that matches a tag on https://github.com/slac-lcls/lcls2/releases to trigger a new build.
+- If the setup.py patch gets out of sync, cd into the conda-recipe directory and run ``./generate_patch.sh 3.3.18``, replacing the number with the tag to sync with.
+- To test a build locally, you must first cd to conda-recipe and run ``./finalize_version.sh`` to set the version string. This isn't done automatically with versioneer because this isn't a python package. This isn't done automaticaly with conda because I didn't figure out how to do it.
 
 Directory Structure
 -------------------

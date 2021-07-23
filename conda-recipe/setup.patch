@@ -1,5 +1,5 @@
 diff --git a/psdaq/setup.py b/psdaq/setup.py
-index 8590945..2e2e7ae 100644
+index 8590945..4567c7f 100644
 --- a/psdaq/setup.py
 +++ b/psdaq/setup.py
 @@ -1,62 +1,10 @@
@@ -67,6 +67,6 @@ index 8590945..2e2e7ae 100644
 -              ]
 -       },
 +       description = 'LCLS II DAQ control minimal interface',
-+       version = 'CI_VERSION',
++       version = 'CI_VERSION'.split('-')[0],
 +       packages = ['psdaq.control']
  )
