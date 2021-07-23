@@ -73,21 +73,13 @@ Ready to contribute? Here's how to set up `psdaq-control-minimal` for local deve
 
    Now you can make your changes locally.
 
-5. When you're done making changes, check that your changes pass flake8::
-
-    $ flake8 psdaq_control_minimal
-
-6. Add new tests for any additional functionality or bugs you may have discovered.  And, of course, be sure that all previous tests still pass by running::
-
-    $ python run_tests.py -v
-
-7. Commit your changes and push your branch to GitHub::
+5. Commit your changes and push your branch to GitHub::
 
     $ git add .
     $ git commit -m "Your detailed description of your changes."
     $ git push origin name-of-your-bugfix-or-feature
 
-8. Submit a pull request through the GitHub website.
+6. Submit a pull request through the GitHub website.
 
 Pull Request Guidelines
 -----------------------

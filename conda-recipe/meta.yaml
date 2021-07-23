@@ -1,7 +1,7 @@
 {% set version = "CI_VERSION" %}
 
 package:
-    name    : psdaq_control_minimal
+    name    : psdaq-control-minimal
     version : {{ version.split('-')[0] }}
 
 source:

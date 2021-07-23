@@ -3,7 +3,7 @@ version: ~> 1.0
 env:
   global:
     # The name of the conda package
-    - CONDA_PACKAGE="psdaq_control_minimal"
+    - CONDA_PACKAGE="psdaq-control-minimal"
     # The folder containing the conda recipe (meta.yaml)
     - CONDA_RECIPE_FOLDER="conda-recipe"
 
