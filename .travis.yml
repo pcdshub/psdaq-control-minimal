@@ -21,20 +21,42 @@ stages:
     if: (branch = master OR tag IS present) AND type != pull_request
 
 import:
-  # Build Stage
-  - pcdshub/pcds-ci-helpers:travis/shared_configs/anaconda-build.yml
   # Deploy Stage
-  #- pcdshub/pcds-ci-helpers:travis/shared_configs/pypi-upload.yml
   - pcdshub/pcds-ci-helpers:travis/shared_configs/anaconda-upload.yml
 
-# Add a build stage for our special version setting
+# Edit build stage for our special version setting
 jobs:
   include:
       - stage: build
         name: "Anaconda Build"
-        before_script:
+        workspaces:
+          create:
+            name: conda
+            paths:
+              - bld-dir
+        install:
+          - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+          - bash miniconda.sh -b -p $HOME/miniconda
+          - export PATH="$HOME/miniconda/bin:$PATH"
+          - conda config --set always_yes yes --set changeps1 no
+          - conda config --set channel_priority strict
+          - conda config --add channels pcds-tag
+          - conda config --add channels conda-forge
+          - conda config --remove channels defaults
+
+          - conda install conda-build anaconda-client
+          - conda update -q conda conda-build
+          # Useful for debugging
+          - conda info -a
+          - conda config --show
           - echo "Setting the version"
           - pushd conda-recipe
           - ./finalize_version.sh
           - popd
+
+        script:
+          - echo "Conda Recipe Folder':' ${CONDA_RECIPE_FOLDER}"
+          - echo "DEBUG RECIPE:"
+          - cat ${CONDA_RECIPE_FOLDER}/meta.yaml
+          - conda build -q $CONDA_RECIPE_FOLDER --output-folder bld-dir --no-anaconda-upload
 
