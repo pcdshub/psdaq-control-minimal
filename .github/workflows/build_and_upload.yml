@@ -15,6 +15,9 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: temp debug
+      run: ls -l
+
     - name: generate package
       run: ./generate_minimal_package.sh
 
