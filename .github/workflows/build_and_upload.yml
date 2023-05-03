@@ -102,7 +102,7 @@ jobs:
         source test-source-env/bin/activate
 
         python -m pip install ./dist/*.gz
-        python -c "import ${{ inputs.package-name }}; print('Imported ${{ inputs.package-name }} successfully')"
+        python -c "import psdaq.control.BlueskyScan; print('Imported psdaq.control.BlueskyScan successfully')"
 
     - name: Upload the package as an artifact
       if: ${{ always() }}
