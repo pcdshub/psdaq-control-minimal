@@ -100,8 +100,13 @@ ENV/
 # Rope project settings
 .ropeproject
 
-# vim swap files
+# vim swap and undo files
 *.swp
+*~
 
 # None of the logs
 /logs/*
+
+# Generated package
+lcls2
+psdaq

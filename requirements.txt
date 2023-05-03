@@ -1,4 +1,3 @@
-# List requirements here.
 bluesky
 ophyd
 zeromq
