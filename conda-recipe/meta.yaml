@@ -23,7 +23,7 @@ requirements:
       - python >=3.6
       - bluesky
       - ophyd
-      - zeromq
+      - pyzmq
 
 test:
     imports:
