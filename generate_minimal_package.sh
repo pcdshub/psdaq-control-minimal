@@ -6,7 +6,7 @@ if [ -z "${1}" ]; then
 else
   TAG="${1}"
 fi
-git clone git@github.com:slac-lcls/lcls2.git --depth 0 --branch "${TAG}"
+git clone git@github.com:slac-lcls/lcls2.git --depth 1 --branch "${TAG}"
 mkdir psdaq
 echo "from ._version import __version__" > psdaq/__init__.py
 mkdir psdaq/control
