@@ -1,0 +1,55 @@
+name: build and upload
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-upload:
+    defaults:
+      run:
+        shell: bash --login -eo pipefail {0}
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: download miniconda
+      run: | 
+        wget -q https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
+        bash ~/miniconda.sh -b -p ~/miniconda
+        echo "source ~/miniconda/etc/profile.d/conda.sh" >> ~/.bash_profile
+        echo "conda activate base" >> ~/.bash_profile
+        echo "Conda version is $(conda --version)"
+    - name: configure miniconda
+      run: |
+        conda config --set always_yes yes --set changeps1 no
+        conda config --set channel_priority strict
+        conda config --add channels pcds-tag
+        conda config --add channels conda-forge
+        conda config --remove channels defaults
+    - name: install build tools
+      run: |
+        conda install -q mamba
+        mamba install -q anaconda-client boa
+        echo "Running using python $(which python)"
+        echo "Running using mamba $(mamba info -a)"
+    - name: update and build recipe
+      run: |
+        pushd conda-recipe
+        ./finalize_version.sh
+        popd
+        conda mambabuild conda-recipe \
+          --quiet \
+          --output-folder "$HOME/conda-bld" \
+          --no-anaconda-upload
+    - name: pcds-dev deployment
+      if: github.event.pull_request.merged == true && github.ref == 'refs/heads/master'
+      env:
+        ANACONDA_API_TOKEN: ${{ secrets.CONDA_UPLOAD_TOKEN_DEV }}
+      run: anaconda upload "${HOME}"/conda-bld/noarch/*.tar.bz2
+    - name: pcds-tag deployment
+      if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+      env:
+        ANACONDA_API_TOKEN: ${{ secrets.CONDA_UPLOAD_TOKEN_TAG }}
+      run: anaconda upload "${HOME}"/conda-bld/noarch/*.tar.bz2
