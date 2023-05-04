@@ -24,8 +24,10 @@ file = "LICENSE.md"
 write_to = "psdaq/_version.py"
 version_scheme = "no-guess-dev"
 
-[tool.setuptools]
-packages = ["psdaq"]
+[tool.setuptools.packages.find]
+where = [ ".",]
+include = [ "psdaq*",]
+namespaces = false
 
 [tool.setuptools.dynamic.readme]
 file = "README.rst"
