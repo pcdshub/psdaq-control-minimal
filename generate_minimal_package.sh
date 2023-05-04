@@ -7,7 +7,7 @@ else
   TAG="${1}"
 fi
 echo "Cloning lcls2 at ${TAG}"
-git clone git@github.com:slac-lcls/lcls2.git --depth 1 --branch "${TAG}"
+git clone https://github.com/slac-lcls/lcls2.git --depth 1 --branch "${TAG}"
 echo "Building minimal psdaq.control package"
 mkdir psdaq
 echo "from ._version import __version__" > psdaq/__init__.py
