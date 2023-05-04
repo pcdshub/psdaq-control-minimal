@@ -48,7 +48,8 @@ jobs:
       run: conda mambabuild conda-recipe \
              --quiet \
              --output-folder "$HOME/conda-bld" \
-             --no-anaconda-upload
+             --no-anaconda-upload \
+             --keep-old-work
 
     - name: Upload the built package as an artifact
       uses: actions/upload-artifact@v3
