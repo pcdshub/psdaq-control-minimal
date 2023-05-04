@@ -37,9 +37,12 @@ jobs:
     - name: install build tools
       run: |
         conda install -q mamba
-        mamba install -q anaconda-client boa
+        mamba install -q anaconda-client boa setuptools-scm
         echo "Running using python $(which python)"
         echo "Running using mamba $(mamba info -a)"
+
+    - name: Configure setuptools-scm
+      run: python -m setuptools_scm
 
     - name: build conda recipe
       run: conda mambabuild conda-recipe \

@@ -18,7 +18,7 @@ requirements:
     build:
       - python >=3.6
       - pip
-      - setuptools_scm
+      - setuptools-scm
     run:
       - python >=3.6
       - bluesky
