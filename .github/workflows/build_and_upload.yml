@@ -51,6 +51,9 @@ jobs:
              --no-anaconda-upload \
              --keep-old-work
 
+    - name: check contents of build folder
+      run: ls ~/conda-bld
+
     - name: Upload the built package as an artifact
       uses: actions/upload-artifact@v3
       with:
