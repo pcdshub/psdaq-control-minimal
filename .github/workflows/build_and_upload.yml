@@ -56,6 +56,7 @@ jobs:
       with:
         name: Python ${{ inputs.python-version }} - conda - package
         path: ~/conda-bld
+        if-no-files-found: error
 
     - name: pcds-dev deployment
       if: github.event.pull_request.merged == true && github.ref == 'refs/heads/master'
