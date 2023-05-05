@@ -51,6 +51,9 @@ jobs:
              --no-anaconda-upload \
              --keep-old-work
 
+    - name: check the home env var
+      run: echo "${HOME}"
+
     - name: check contents of build folder
       run: ls ~/conda-bld
 
