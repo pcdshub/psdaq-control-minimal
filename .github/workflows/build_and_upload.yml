@@ -45,11 +45,13 @@ jobs:
       run: python -m setuptools_scm
 
     - name: build conda recipe
-      run: conda mambabuild conda-recipe \
-             --quiet \
-             --output-folder "$HOME/conda-bld" \
-             --no-anaconda-upload \
-             --keep-old-work
+      run: |
+        mkdir "${HOME}/conda-bld"
+        conda mambabuild conda-recipe \
+          --quiet \
+          --output-folder "${HOME}/conda-bld" \
+          --no-anaconda-upload \
+          --keep-old-work
 
     - name: check the home env var
       run: echo "${HOME}"
