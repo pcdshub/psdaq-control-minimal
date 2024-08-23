@@ -11,7 +11,7 @@ jobs:
         shell: bash --login -eo pipefail {0}
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
@@ -54,7 +54,7 @@ jobs:
           --keep-old-work
 
     - name: Upload the built package as an artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: psdaq-control-minimal conda package
         path: ~/conda-bld
@@ -78,7 +78,7 @@ jobs:
         shell: bash --login -eo pipefail {0}
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
