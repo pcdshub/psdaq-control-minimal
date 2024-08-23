@@ -12,7 +12,7 @@ echo "Building minimal psdaq.control package"
 mkdir psdaq
 echo "from ._version import __version__" > psdaq/__init__.py
 # This will be overwritten by setuptools_scm, but it can help in testing
-echo "__version__ = '${TAG}'" > psdaq/_version.py
+echo "__version__ = version = '${TAG}'" > psdaq/_version.py
 mkdir psdaq/control
 cp lcls2/psdaq/psdaq/control/* psdaq/control
 echo "Done"
